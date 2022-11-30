@@ -14,3 +14,55 @@ build_property.SupportLocalizedComponentNames =
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
 build_property.MSBuildProjectDirectory = E:\zzzz STUDIA\sem5\pamiw\Projekt\projekt
 build_property._RazorSourceGeneratorDebug = 
+
+[E:/zzzz STUDIA/sem5/pamiw/Projekt/projekt/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/zzzz STUDIA/sem5/pamiw/Projekt/projekt/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/zzzz STUDIA/sem5/pamiw/Projekt/projekt/Views/Konto/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS29udG9cQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/zzzz STUDIA/sem5/pamiw/Projekt/projekt/Views/Konto/Zaloguj.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS29udG9cWmFsb2d1ai5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/zzzz STUDIA/sem5/pamiw/Projekt/projekt/Views/Ogloszenie/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2dsb3N6ZW5pZVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/zzzz STUDIA/sem5/pamiw/Projekt/projekt/Views/Ogloszenie/GetList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2dsb3N6ZW5pZVxHZXRMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/zzzz STUDIA/sem5/pamiw/Projekt/projekt/Views/Ogloszenie/TwojeOgloszenia.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2dsb3N6ZW5pZVxUd29qZU9nbG9zemVuaWEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/zzzz STUDIA/sem5/pamiw/Projekt/projekt/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/zzzz STUDIA/sem5/pamiw/Projekt/projekt/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/zzzz STUDIA/sem5/pamiw/Projekt/projekt/Views/Uzytkownik/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXp5dGtvd25pa1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/zzzz STUDIA/sem5/pamiw/Projekt/projekt/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/zzzz STUDIA/sem5/pamiw/Projekt/projekt/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/zzzz STUDIA/sem5/pamiw/Projekt/projekt/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-r6sl0zbmds

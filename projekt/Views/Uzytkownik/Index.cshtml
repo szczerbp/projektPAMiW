@@ -1,0 +1,45 @@
+﻿@using projekt.Data.Models
+@model IEnumerable<Uzytkownik>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index Uzytkownik</h1>
+
+<table class="table table-bordered table-striped" style="width:100%">
+  <thead>
+      <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Imie
+            </th>
+            <th>
+                Nazwisko
+            </th>
+            <th>
+                Email
+            </th>
+      </tr>
+  </thead>
+  <tbody>
+      @foreach(var obj in Model){
+          <tr>
+                <td>
+                    @obj.Id
+                </td>
+                <td>
+                    @obj.Imie
+                </td>
+                <td>
+                    @obj.Nazwisko
+                </td>
+                <td>
+                    @obj.Email
+                </td>
+          </tr>
+      }
+  </tbody>
+
+</table>

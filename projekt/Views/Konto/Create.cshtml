@@ -1,0 +1,57 @@
+﻿@using projekt.Data.Models
+@model Konto
+
+<h2>Stwórz konto:</h2>
+<form method="post">
+    <table>
+        <tr>
+            <td>Imie:</td>
+            <td>
+                <input asp-for="Uzytkownik.Imie" />
+                <span asp-validation-for="Uzytkownik.Imie" class="text-danger"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>Nazwisko:</td>
+            <td>
+                <input asp-for="Uzytkownik.Nazwisko" />
+                <span asp-validation-for="Uzytkownik.Nazwisko" class="text-danger"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>E-mail:</td>
+            <td>
+                <input asp-for="Uzytkownik.Email" />
+                <span asp-validation-for="Uzytkownik.Email" class="text-danger"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>Login:</td>
+            <td>
+                <input asp-for="Login" />
+                <span asp-validation-for="Login" class="text-danger"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>Haslo:</td>
+            <td>
+                <input type="password" asp-for="Haslo" />
+                <span asp-validation-for="Haslo" class="text-danger"></span>
+            </td>
+        </tr>
+       <tr>
+            <td>&nbsp;</td>
+            <td>
+                <input type="submit" value="Stwórz konto" />
+                <a asp-controller="Konto" asp-action="Zaloguj">Zaloguj</a>
+            </td>
+        </tr>
+    </table>
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
+

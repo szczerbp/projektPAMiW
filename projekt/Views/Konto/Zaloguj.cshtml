@@ -1,0 +1,27 @@
+﻿@using projekt.Data.Models
+@model Konto
+
+<h2>Zaloguj</h2>
+<form method="post">
+    <table>
+        <tr>
+            <td>Login:</td>
+            <td>
+                <input asp-for="Login" />
+            </td>
+        </tr>
+        <tr>
+            <td>Haslo:</td>
+            <td>
+                <input type="password" asp-for="Haslo" />
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>
+                <input type="submit" value="Zaloguj" />
+                <a asp-controller="Konto" asp-action="Create">Stwórz konto</a>
+            </td>
+        </tr>
+    </table>
+</form>

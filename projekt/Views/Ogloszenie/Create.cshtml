@@ -1,0 +1,23 @@
+﻿@model Ogloszenie
+@using projekt.Data.Models
+
+<form method="post">
+    <div class="p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Dodaj ogłoszenie</h2>
+            <hr />
+        </div>
+        <div class="mb-3">
+            <label asp-for="Tytul">Tytuł</label>
+            <input asp-for="Tytul" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="Opis"></label>
+            <textarea asp-for="Opis" class="form-control" id="exampleTextarea" rows="7"></textarea>
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Dodaj</button>
+        </div>
+    </div>
+</form>
+

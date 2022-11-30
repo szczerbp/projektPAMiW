@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Ogloszenie>
+@using projekt.Data.Models
+
+
+
+<div class="row pt-4">
+    <div class="col-6">
+        <h2>Twoje ogłoszenia:</h2>
+    </div>
+    <div class="col-6 text-end">
+        <a asp-controller="Ogloszenie" asp-action="Create" class="btn btn-primary">
+            Dodaj ogłoszenie
+        </a>
+    </div>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                Tytul
+            </th>
+            <th>
+                Opis
+            </th>
+            <th>
+                Data
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td>
+                    @obj.Tytul
+                </td>
+                <td>
+                    @obj.Opis
+                </td>
+                <td>
+                    @obj.DataStworzenia
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+
+

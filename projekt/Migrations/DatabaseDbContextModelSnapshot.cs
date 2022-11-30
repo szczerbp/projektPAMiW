@@ -21,6 +21,24 @@ namespace projekt.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("projekt.Data.Models.Czat", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("UzytkownikId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UzytkownikId");
+
+                    b.ToTable("Czaty");
+                });
+
             modelBuilder.Entity("projekt.Data.Models.Konto", b =>
                 {
                     b.Property<long>("Id")
@@ -102,25 +120,6 @@ namespace projekt.Migrations
                     b.ToTable("Ogloszenia");
                 });
 
-            modelBuilder.Entity("projekt.Data.Models.Skrzynka", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<long>("WlascicielId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("WlascicielId")
-                        .IsUnique();
-
-                    b.ToTable("Skrzynki");
-                });
-
             modelBuilder.Entity("projekt.Data.Models.Uzytkownik", b =>
                 {
                     b.Property<long>("Id")
@@ -154,11 +153,11 @@ namespace projekt.Migrations
                     b.Property<long?>("AutorId")
                         .HasColumnType("bigint");
 
+                    b.Property<long>("CzatId")
+                        .HasColumnType("bigint");
+
                     b.Property<DateTime>("Data")
                         .HasColumnType("datetime2");
-
-                    b.Property<long>("SkrzynkaId")
-                        .HasColumnType("bigint");
 
                     b.Property<string>("Tekst")
                         .HasColumnType("nvarchar(max)");
@@ -167,9 +166,20 @@ namespace projekt.Migrations
 
                     b.HasIndex("AutorId");
 
-                    b.HasIndex("SkrzynkaId");
+                    b.HasIndex("CzatId");
 
                     b.ToTable("Wiadomosci");
+                });
+
+            modelBuilder.Entity("projekt.Data.Models.Czat", b =>
+                {
+                    b.HasOne("projekt.Data.Models.Uzytkownik", "Uzytkownik")
+                        .WithMany("Czat")
+                        .HasForeignKey("UzytkownikId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Uzytkownik");
                 });
 
             modelBuilder.Entity("projekt.Data.Models.Konto", b =>
@@ -213,32 +223,26 @@ namespace projekt.Migrations
                     b.Navigation("Autor");
                 });
 
-            modelBuilder.Entity("projekt.Data.Models.Skrzynka", b =>
-                {
-                    b.HasOne("projekt.Data.Models.Uzytkownik", "Wlasciciel")
-                        .WithOne("Skrzynka")
-                        .HasForeignKey("projekt.Data.Models.Skrzynka", "WlascicielId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Wlasciciel");
-                });
-
             modelBuilder.Entity("projekt.Data.Models.Wiadomosc", b =>
                 {
                     b.HasOne("projekt.Data.Models.Uzytkownik", "Autor")
                         .WithMany("Wiadomosci")
                         .HasForeignKey("AutorId");
 
-                    b.HasOne("projekt.Data.Models.Skrzynka", "Skrzynka")
+                    b.HasOne("projekt.Data.Models.Czat", "Czat")
                         .WithMany("Wiadomosci")
-                        .HasForeignKey("SkrzynkaId")
+                        .HasForeignKey("CzatId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Autor");
 
-                    b.Navigation("Skrzynka");
+                    b.Navigation("Czat");
+                });
+
+            modelBuilder.Entity("projekt.Data.Models.Czat", b =>
+                {
+                    b.Navigation("Wiadomosci");
                 });
 
             modelBuilder.Entity("projekt.Data.Models.Ogloszenie", b =>
@@ -246,20 +250,15 @@ namespace projekt.Migrations
                     b.Navigation("Obserwacje");
                 });
 
-            modelBuilder.Entity("projekt.Data.Models.Skrzynka", b =>
-                {
-                    b.Navigation("Wiadomosci");
-                });
-
             modelBuilder.Entity("projekt.Data.Models.Uzytkownik", b =>
                 {
+                    b.Navigation("Czat");
+
                     b.Navigation("Konto");
 
                     b.Navigation("Obserwacje");
 
                     b.Navigation("Ogloszenia");
-
-                    b.Navigation("Skrzynka");
 
                     b.Navigation("Wiadomosci");
                 });

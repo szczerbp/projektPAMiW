@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Ogloszenie>
+@using projekt.Data.Models
+
+<h2>Lista ogłoszeń:</h2>
+
+<div class="row pt-4">
+    <div class="col-6">
+        @using (Html.BeginForm("GetList", "Ogloszenie", FormMethod.Get))
+        {
+            <p>
+            Znajdź ogłoszenie: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+            <input type="submit" value="Szukaj" />
+            </p>
+        }
+    </div>   
+    <div class="col-6 text-end">
+        <a asp-controller="Ogloszenie" asp-action="Create" class="btn btn-primary">
+            Dodaj ogłoszenie
+        </a>
+    </div>
+
+</div>
+
+<div class="col-12 text-end">
+    <ul class="pagination">
+        <li class="page-item active">
+                @Html.ActionLink("<<", "GetList", new { sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter, page=ViewBag.CurrentPage-1 })
+        </li>
+        <li>
+                &nbsp&nbsp&nbsp
+                @ViewBag.CurrentPage
+                &nbsp&nbsp&nbsp
+        </li>
+        <li class="page-item">
+                @Html.ActionLink(">>", "GetList", new { sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter, page=ViewBag.CurrentPage+1 })
+        </li>
+    </ul>
+</div>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.ActionLink("Tytul", "GetList", new { sortOrder = ViewBag.NameSortParm, currentFilter=ViewBag.CurrentFilter })
+            </th>
+            <th>
+                Opis
+            </th>
+            <th>
+                @Html.ActionLink("Data", "GetList", new { sortOrder = ViewBag.DateSortParm, currentFilter=ViewBag.CurrentFilter })
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var obj in Model)
+        {
+            <tr>
+                <td>
+                    @obj.Tytul
+                </td>
+                <td>
+                    @obj.Opis
+                </td>
+                <td>
+                    @obj.DataStworzenia
+                </td>
+                <td>
+                    <input type="button" value="Wyślij wiadomość" />
+                </td>
+            </tr>
+        }
+        
+    </tbody>
+</table>
+
+
