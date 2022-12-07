@@ -11,6 +11,7 @@ using System.Net.Http.Headers;
 using PagedList;
 using NuGet.Packaging.Signing;
 using System.Diagnostics.CodeAnalysis;
+using static Azure.Core.HttpHeader;
 
 namespace projekt.Controllers
 {
@@ -76,7 +77,7 @@ namespace projekt.Controllers
                     break;
             }
 
-            int pageSize = 2;
+            int pageSize = 5;
             int pageNumber = (page ?? 1);
 
             List<Ogloszenie> ogloszeniaList = ogloszenia.ToList();
@@ -91,102 +92,30 @@ namespace projekt.Controllers
             return View(ogloszeniaToShow);
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> AccessCreate()
-        //{
-        //    var jwt = Request.Cookies["jwtCookie"];
-
-        //    using (var httpClient = new HttpClient())
-        //    {
-        //        httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
-        //        using (var response = await httpClient.GetAsync("https://localhost:7162/Ogloszenie/GetUzytkownikToCreate")) // change API URL to yours 
-        //        {
-        //            if (response.StatusCode == System.Net.HttpStatusCode.OK)
-        //            {
-        //                string apiResponse = await response.Content.ReadAsStringAsync();
-        //                return RedirectToAction("Create");
-        //            }
-
-        //            if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
-        //            {
-        //                return RedirectToAction("Zaloguj", "Konto");//, new { message = "Please Login again" });
-        //            }
-        //        }
-        //    }
-
-        //    return View();
-        //}
-
-        ////[Authorize]
-        ////public Uzytkownik GetUzytkownikToCreate()
-        ////{
-        ////    Uzytkownik u = new();
-        ////    string authHeader = this.HttpContext.Request.Headers["Authorization"];
-        ////    var stream = "[encoded jwt]";
-        ////    var handler = new JwtSecurityTokenHandler();
-        ////    var jsonToken = handler.ReadToken(stream);
-        ////    var tokenS = jsonToken as JwtSecurityToken;
-
-        ////    return u;
-        ////}
-        //[Authorize]
-        //public string GetUzytkownikToCreate()
-        //{
-        //    Uzytkownik u = new();
-        //    string token = "";
-        //    string authHeader = Request.Headers[HeaderNames.Authorization];
-        //    if (AuthenticationHeaderValue.TryParse(authHeader, out var headerValue))
-        //    {
-        //        // we have a valid AuthenticationHeaderValue that has the following details:
-
-        //        var scheme = headerValue.Scheme;
-        //        token = headerValue.Parameter;
-
-        //        // scheme will be "Bearer"
-        //        // parmameter will be the token itself.
-        //    }
-
-
-        //    return authHeader;
-        //}
-
-        //[HttpGet]
-        //public async Task<IActionResult> CreateAuthCheck()
-        //{
-
-        //    var jwt = Request.Cookies["jwtCookie"];
-
-        //    using (var httpClient = new HttpClient())
-        //    {
-        //        httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
-        //        using (var response = await httpClient.GetAsync("https://localhost:7162/Ogloszenie/AuthCheck"))
-        //        {
-        //            if (response.StatusCode == System.Net.HttpStatusCode.OK)
-        //            {
-        //                return RedirectToAction("Create");
-        //            }
-
-        //            if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
-        //            {
-        //                return RedirectToAction("Zaloguj", "Konto");
-        //            }
-        //        }
-        //    }
-
-        //    return View();
-        //}
-
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> CreateAsync()
         {
-            return View();
-        }
+            var jwt = Request.Cookies["jwtCookie"];
 
-        //[Authorize]
-        //public IActionResult AuthCheck()
-        //{
-        //    return View();
-        //}
+            using (var httpClient = new HttpClient())
+            {
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
+                using (var response = await httpClient.GetAsync("https://localhost:7162/Konto/AuthLogin"))
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        return View();
+                    }
+
+                    if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                    {
+                        return RedirectToAction("Zaloguj", "Konto");
+                    }
+                }
+            }
+
+            return RedirectToAction("Zaloguj", "Konto");
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -210,7 +139,7 @@ namespace projekt.Controllers
                         _db.Ogloszenia.Add(o);
 
                         _db.SaveChanges();
-                        return RedirectToAction("Create");
+                        return RedirectToAction("TwojeOgloszenia", "Ogloszenie");
                     }
 
                     if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
@@ -220,7 +149,7 @@ namespace projekt.Controllers
                 }
             }
 
-            return View();
+            return RedirectToAction("Zaloguj", "Konto");
         }
 
         [HttpGet]
@@ -250,7 +179,7 @@ namespace projekt.Controllers
                     }
                 }
             }
-            return View();
+            return RedirectToAction("Zaloguj", "Konto");
         }
 
     }

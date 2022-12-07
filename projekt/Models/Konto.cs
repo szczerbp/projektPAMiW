@@ -12,8 +12,6 @@ namespace projekt.Data.Models
         [Required]
         public string? Haslo { get; set; }
         public string? TypKonta { get; set; }
-
-        //Navigation Properties
         public Uzytkownik? Uzytkownik { get; set; }
         public long UzytkownikId { get; set; }
     }

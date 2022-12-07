@@ -12,12 +12,8 @@ namespace projekt.Data.Models
         public string? Nazwisko { get; set; }
         [Required]
         public string? Email { get; set; }
-
-        //Navigation Properties
         public Konto? Konto { get; set; }
-        //public List<Ogloszenie>? Obserwowane { get; set; }
         public List<Ogloszenie>? Ogloszenia { get; set; }
-
         public List<Obserwacja>? Obserwacje { get; set; }
         public List<Wiadomosc>? Wiadomosci { get; set; }
         public List<Czat>? Czat { get; set; }

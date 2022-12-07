@@ -24,13 +24,11 @@ namespace projekt.Controllers
             _config = config;
         }
 
-        //GET 
         public IActionResult Create()
         {
             return View();
         }
 
-        //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(Konto k)
@@ -47,13 +45,11 @@ namespace projekt.Controllers
             return View(k);
         }
 
-        //GET
         public IActionResult Zaloguj()
         {
             return View();
         }
 
-        //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Zaloguj(Konto k)
@@ -64,10 +60,10 @@ namespace projekt.Controllers
             {
                 if (BCrypt.Net.BCrypt.Verify(k.Haslo, konto.Haslo))
                 {
-                    var tokenString = GenerateJSONWebToken(k);
+                    var tokenString = GenerateJSONWebToken(konto);
                     SetJWTCookie(tokenString);
 
-                    return View();
+                    return RedirectToAction( "GetList", "Ogloszenie");
                 }
             }
             return View();
@@ -80,7 +76,8 @@ namespace projekt.Controllers
 
             var claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.Sub, k.Login.ToString()),
+                new Claim(JwtRegisteredClaimNames.Sub, k.Login),
+                new Claim("Rola", k.TypKonta),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 
@@ -109,12 +106,25 @@ namespace projekt.Controllers
             var identity = HttpContext.User.Identity as ClaimsIdentity;
             if (identity != null)
             {
-                IEnumerable<Claim> claims = identity.Claims;
-                //return identity.Claims.ElementAt(0).Value;
-                return claims.ElementAt(0).Value;
+                return identity.Claims.ElementAt(0).Value;
             }
             return null;
         }
+
+        [Authorize]
+        public List<string> AuthLoginWithRole()
+        {
+            List<string> list = new();
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            if (identity != null)
+            {
+                list.Add(identity.Claims.ElementAt(0).Value);
+                list.Add(identity.Claims.ElementAt(1).Value);
+                return list;
+            }
+            return null;
+        }
+
 
 
     }

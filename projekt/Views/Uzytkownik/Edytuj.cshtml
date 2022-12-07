@@ -1,0 +1,42 @@
+﻿@using projekt.Data.Models
+@model Uzytkownik
+
+<h2>Stwórz konto:</h2>
+<form method="post">
+    <table>
+        <tr>
+            <td>Imie:</td>
+            <td>
+                <input asp-for="Imie" />
+                <span asp-validation-for="Imie" class="text-danger"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>Nazwisko:</td>
+            <td>
+                <input asp-for="Nazwisko" />
+                <span asp-validation-for="Nazwisko" class="text-danger"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>E-mail:</td>
+            <td>
+                <input asp-for="Email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>
+                <input type="submit" value="Zapisz zmiany" />
+            </td>
+        </tr>
+    </table>
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
+

@@ -10,10 +10,12 @@
         <div class="mb-3">
             <label asp-for="Tytul">Tytuł</label>
             <input asp-for="Tytul" class="form-control" />
+            <span asp-validation-for="Tytul" class="text-danger"></span>
         </div>
         <div class="mb-3">
             <label asp-for="Opis"></label>
             <textarea asp-for="Opis" class="form-control" id="exampleTextarea" rows="7"></textarea>
+            <span asp-validation-for="Opis" class="text-danger"></span>
         </div>
         <div class="mb-3">
             <button type="submit" class="btn btn-primary">Dodaj</button>
@@ -21,3 +23,8 @@
     </div>
 </form>
 
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

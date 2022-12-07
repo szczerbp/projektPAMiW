@@ -1,14 +1,11 @@
 ﻿@using projekt.Data.Models
 @model IEnumerable<Uzytkownik>
-@{
-    ViewData["Title"] = "Index";
-}
 
-<h1>Index Uzytkownik</h1>
+<h1>Lista Użytkowników:</h1>
 
 <table class="table table-bordered table-striped" style="width:100%">
-  <thead>
-      <tr>
+    <thead>
+        <tr>
             <th>
                 Id
             </th>
@@ -21,11 +18,12 @@
             <th>
                 Email
             </th>
-      </tr>
-  </thead>
-  <tbody>
-      @foreach(var obj in Model){
-          <tr>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            <tr>
                 <td>
                     @obj.Id
                 </td>
@@ -38,8 +36,16 @@
                 <td>
                     @obj.Email
                 </td>
-          </tr>
-      }
-  </tbody>
+                <td style="width:12%">
+                    <a asp-controller="Uzytkownik" asp-action="Edytuj" asp-route-Id=@obj.Id>
+                        <button type="button" class="btn btn-info" >Edytuj</button>
+                    </a>
+                    <a asp-controller="Uzytkownik" asp-action="Usun" asp-route-Id=@obj.Id>
+                        <button type="button" class="btn btn-warning">Usuń</button>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
 
 </table>
